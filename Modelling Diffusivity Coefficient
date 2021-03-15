@@ -1,0 +1,53 @@
+import csv
+import numpy as np
+import matplotlib.pyplot as plt
+
+#constants for all trials
+cs=770 #ug/mL
+
+#change these
+c=0
+sa=0.073115 #surface area of the gel (assume sphere, calculate using volume) in m
+h=0.001 #thickness of wall in m
+
+k=1 #IMPORTANT DIFFUSION COEFFICIENT
+
+
+
+n = 0
+dt = 5 # time step (s)
+ctime = 2.5
+dmdt=100
+
+time = [] #current time
+cdmdt = [] #current rate of diffusion
+
+file = "diffusion csv.csv"                   # !!!!! you will have to change this for your filename
+data = np.genfromtxt(file,delimiter=',')
+timed = data[:,0]
+deriv = data[:,1]
+cgrad = data[:,2]
+
+while dmdt > 0:
+    conc=cgrad[n]
+    print(conc)
+    dmdt=(conc*sa*k)/h
+    
+    time.append(ctime)
+    cdmdt.append(dmdt)
+    
+    ctime = ctime + dt
+    n=n+1
+    
+    
+           
+    
+plt.figure
+plt.plot(timed, deriv,".", label="Experimental RoC")
+plt.plot(ctime, cdmdt, label="Calculated RoC")
+plt.xlabel("Time (s)")
+plt.ylabel("Rate of Change of Diffusion")
+#plt.ylim(0, 100)  
+#plt.xlim(200,1200)
+plt.legend()
+plt.show()
