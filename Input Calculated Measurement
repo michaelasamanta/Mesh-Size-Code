@@ -1,0 +1,21 @@
+#constants
+ds=0.969 #density of fluid in g/cm^3
+V1=18 #molar volume of water
+Cn=4 #flory characteristic ratio of chitosan hydrogel THIS ONE IS WEIRD MAKE SURE TO VERIFY THIS
+l=1.54 #length of polymer bond in angstroms
+
+#FIND A SIMILAR HYDROGEL WITH SIMILAR MOLECULAR WEIGHT AND USE THAT INFORMATION FOR Cn AND l!!!!!!
+
+Mr= 1526.5+359.33  #molecular weight of monomer in g/mol, from PUBCHEM
+Mn= 1526.5
+
+#measurements
+#Mo=10 #weight of hydrogel in air in grams
+#Mi=9 #weight of hydrogel immersed in grams
+
+dp= 0.400237953 #density of hydrogel
+vbar= 1/dp #specific volume of hydrogel
+V2s= 0.274003667 #polymer volume fraction in swollen state
+V2r= 0.494551582 #polymer volume fraction in relaxed state (before swelling)
+Mb= 1.974 #mass of hydrogel before swelling
+Ma= 15.46 #mass of hydrogel after swelling
