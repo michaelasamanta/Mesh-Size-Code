@@ -19,3 +19,38 @@ V2s= 0.274003667 #polymer volume fraction in swollen state
 V2r= 0.494551582 #polymer volume fraction in relaxed state (before swelling)
 Mb= 1.974 #mass of hydrogel before swelling
 Ma= 15.46 #mass of hydrogel after swelling
+
+#def finddp(ds,Mo,Mi):
+    #return((Mo*ds)/(Mo-Mi))
+
+#def findV2s(dp,ds,Mb,Ma):
+    #return((1+((dp/ds)*(Ma/Mb)-1))**(-1))
+
+def findX(V2s):
+    return(0.5+V2s/3)
+
+def findMc(V1,dp,X,V2s,V2r,vbar,Mn): #equation taken from Peppas et al.
+    #return((-dp*V1*V2s**(1/3))/(np.log(1-V2s)+V2s+X*V2s**2))
+    #return(-dp*V1*(V2s**(1/3)-V2s/2)*(np.log(1-V2s)+V2s+X*V2s**2)**(-1))
+    return((Mn/2)-(V2r*((V2s/V2r)**(1/3))-(V2s/(2*V2r)))/((vbar/V1)*(np.log(1-V2s)+V2s+X*(V2s)**2)))
+
+#def findrms(Cn,l,Mc,Mr,X):
+    #return((Cn**(1/2))*(((2*Mc)/Mr)**(1/2))*l*X)
+    #return(Cn*l*2*(Mc/Mr))
+
+def findE(V2s,Cn,Mc,Mr,l):
+    return(((V2s)**(-1/3))*((2*Cn*Mc)/Mr)**(1/2)*l)
+    
+#dp=finddp(ds,Mo,Mi)
+#V2s=findV2s(dp,ds,Mb,Ma)
+X=findX(V2s)
+Mc=findMc(V1,dp,X,V2s,V2r,vbar,Mn)
+#rms=findrms(Cn,l,Mc,Mr,X)
+E=findE(V2s,Cn,Mc,Mr,l)
+
+#print("dp =",dp)
+print("V2s =",V2s,"polymer volume fraction")
+print("X =",X,"polymer water interaction parameter")
+print("Mc =",Mc,"molecular weight between crosslinks")
+#print("rms =",rms,"rms of end to end network chains")
+print("E =",E,"mesh size")
